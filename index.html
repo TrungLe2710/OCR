@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OCR — Ảnh → Văn bản</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>OCR: Chuyển chữ trong ảnh thành văn bản</h1>
+
+    <div id="drop-area" class="drop-area">
+      <p>Kéo thả ảnh vào đây hoặc <label for="fileElem" class="linkish">chọn file</label></p>
+      <input id="fileElem" type="file" accept="image/*" style="display:none" />
+      <small>Ảnh có chữ rõ, độ phân giải tốt sẽ cho kết quả chính xác hơn.</small>
+    </div>
+
+    <div class="row">
+      <div class="panel">
+        <h3>Ảnh (preview)</h3>
+        <canvas id="preview" class="preview" width="640" height="360" aria-label="Ảnh xem trước"></canvas>
+        <div class="controls">
+          <label>
+            <input type="checkbox" id="preproc" checked />
+            Tiền xử lý (resize & grayscale)
+          </label>
+          <label>
+            Ngôn ngữ:
+            <select id="lang">
+              <option value="eng" selected>English (eng)</option>
+              <option value="vie">Tiếng Việt (vie) — tải chậm</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Kết quả</h3>
+        <div class="progress" id="progressBar"><div id="progressFill" style="width:0%"></div></div>
+        <div id="status">Chưa xử lý</div>
+        <textarea id="result" placeholder="Kết quả sẽ hiện ở đây..." rows="12"></textarea>
+        <div class="btn-row">
+          <button id="runBtn">Chuyển chữ</button>
+          <button id="copyBtn">Copy</button>
+          <button id="downloadBtn">Tải .txt</button>
+          <button id="clearBtn">Xóa</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>Gợi ý: ảnh chữ rõ, không bị mờ, nền tương phản với chữ để tăng độ chính xác.</footer>
+  </div>
+
+  <!-- Tesseract.js v4 (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
